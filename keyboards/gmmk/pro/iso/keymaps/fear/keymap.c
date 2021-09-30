@@ -17,14 +17,19 @@ enum custom_layers {
 // Tap Dance Definitions
 enum custom_tapdance {
   TD_CAPSLOCK,
+  TD_GUILOCK,
+  TD_RESET,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  // Tap once for shift, twice for Caps Lock
   [TD_CAPSLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
+  [TD_GUILOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, MO(1)),
+  [TD_RESET] = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, RESET),
 };
 
-#define TD_CAPS TD(TD_CAPSLOCK)
+#define TD_CAPS  TD(TD_CAPSLOCK)
+#define TD_LGUI  TD(TD_GUILOCK)
+#define TD_RSET  TD(TD_RESET)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -34,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,                   KC_PGUP,
         TD_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT,           KC_PGDN,
         KC_LSFT, KC_NUBS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(1),   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
+        KC_LCTL, TD_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(1),   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FN1] = LAYOUT(
         _______, TG(2),   TG(3),   _______, _______, DM_REC1, DM_RSTP, DM_PLY1, _______, _______, KC_NLCK, KC_SLCK, KC_CLCK, _______,          RGB_TOG,
-        RGB_TOG, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, RGB_M_T, _______, _______, _______, RESET,            RGB_HUI,
+        RGB_TOG, RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,_______, _______, _______, _______, _______, _______, _______, _______, TD_RSET,          RGB_HUI,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   RGB_HUD,
         KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RGB_SAI,
         _______, _______, _______, _______, _______, _______, _______, NK_TOGG, _______, _______, _______, _______,          _______, RGB_MOD, RGB_SAD,
@@ -149,11 +154,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_matrix_set_color(LED_2,    RGB_PURPLE);     // RGB Mode
                 rgb_matrix_set_color(LED_3,    RGB_PURPLE);     // RGB Mode
                 rgb_matrix_set_color(LED_4,    RGB_PURPLE);     // RGB Mode
-                rgb_matrix_set_color(LED_5,    RGB_PURPLE);     // RGB Mode
-                rgb_matrix_set_color(LED_6,    RGB_PURPLE);     // RGB Mode
-                rgb_matrix_set_color(LED_7,    RGB_PURPLE);     // RGB Mode
-                rgb_matrix_set_color(LED_8,    RGB_PURPLE);     // RGB Mode
-                rgb_matrix_set_color(LED_9,    RGB_PURPLE);     // RGB Mode
                 rgb_matrix_set_color(LED_N,    RGB_CYAN);       // NKRO Toggle
                 rgb_matrix_set_color(LED_DEL,  RGB_PURPLE);     // RGB Sat
                 rgb_matrix_set_color(LED_PGUP, RGB_PURPLE);     // RGB Sat
