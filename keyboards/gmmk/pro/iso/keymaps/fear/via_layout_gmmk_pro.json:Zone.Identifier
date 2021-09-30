@@ -1,4 +1,4 @@
 [ZoneTransfer]
 ZoneId=3
 ReferrerUrl=https://gloob.eu/
-HostUrl=https://cdn.discordapp.com/attachments/868882230754299964/869235648748466186/gmmk_pro-iso.json
+HostUrl=https://github.com/fear/qmk_firmware/raw/master/keyboards/gmmk/pro/iso/keymaps/fear/via_layout_gmmk_pro.json
