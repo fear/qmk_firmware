@@ -23,8 +23,8 @@ enum custom_tapdance {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_CAPSLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-  [TD_GUILOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, MO(1)),
-  [TD_RESET] = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, RESET),
+  [TD_GUILOCK]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, MO(1)),
+  [TD_RESET]    = ACTION_TAP_DANCE_DOUBLE(KC_BSPC, RESET),
 };
 
 #define TD_CAPS  TD(TD_CAPSLOCK)
@@ -146,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 break;
             case _FN1:
                 for (uint8_t i=0; i < sizeof(LED_SIDE_RIGHT)/sizeof(LED_SIDE_RIGHT[0]); i++) {
-                    rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
+                    rgb_matrix_set_color(LED_SIDE_RIGT[i], RGB_RED);
                 }
                 rgb_matrix_set_color(LED_BSPC, RGB_RED);        // RESET
                 rgb_matrix_set_color(LED_GRV,  RGB_PURPLE);     // RGB Mode
